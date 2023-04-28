@@ -1,0 +1,215 @@
+
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a backend for a web application for managing movie tickets",
+        "version": "1.0.0",
+        "title": "Ticket API",
+        "contact": {
+            "email": "vineethkrishna.89855@gmail.com"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "paths" : {
+        "/tickets" : {
+            "get" : {
+                "summary" : "Get all the ticket",
+                "description": "Get all the ticket",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/getTicketsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "Save the ticket",
+                "description": "Save the ticket",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "ticket object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ticket" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Ticket"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/tickets/{id}" : {
+            "put" : {
+                "summary" : "Update an existing ticket",
+                "description": "Update an existing ticket",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ticket id that needs to be updated",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "ticket object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ticket" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Ticket"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "Delete the ticket",
+                "description": "Delete the ticket",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ticket id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "getTicketsResponse": {
+            "type": "object",
+            "properties": {
+                "created_date": {
+                     "type": "string"
+                },
+                "updated_date": {
+                    "type": "string"
+                },
+                "customer_name": {
+                    "type": "string"
+                },
+                "movie_name": {
+                    "type": "string"
+                },
+                "movie_date": {
+                    "type": "string"
+                }
+            }
+        },
+        "Ticket": {
+            "type": "object",
+            "properties": {
+                "created_date": {
+                    "type": "string"
+               },
+               "updated_date": {
+                   "type": "string"
+               },
+               "customer_name": {
+                   "type": "string"
+               },
+               "movie_name": {
+                   "type": "string"
+               },
+               "movie_date": {
+                   "type": "string"
+               }
+            }
+        },
+        "Response": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
