@@ -1,0 +1,19 @@
+{
+  "name": "tickets-api",
+  "version": "1.0.0",
+  "description": "This is a backend for a web application for managing movie tickets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "nvkr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.0",
+    "swagger-ui-express": "^4.6.2"
+  }
+}
