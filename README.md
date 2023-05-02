@@ -20,8 +20,8 @@ App requires authorization. To call API's using postman follow below steps
 
 # Available API's
 
-/tickets (GET) - Get all tickets
-/tickets/id (GET) - Get ticket with given id
-/tickets (POST) - Add a new ticket
-/tickets/id (UPDATE) - Update an existing ticket
-/tickets/id (DELETE) - Delete an exixting ticket
+-> /tickets (GET) - Get all tickets
+-> /tickets/id (GET) - Get ticket with given id
+-> /tickets (POST) - Add a new ticket
+-> /tickets/id (UPDATE) - Update an existing ticket
+-> /tickets/id (DELETE) - Delete an exixting ticket
