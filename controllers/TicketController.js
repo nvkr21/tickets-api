@@ -1,26 +1,80 @@
 const Ticket = require("../models/ticketModel")
+const ticketsDal = require("../dal/ticketsDal")
+const { testDbConnection } = require("../config/dal_config")
 
 const TicketController = {
 
-    getAllTickets :  (req, res) => {res.send("getAllTickets")},
+    getAllTickets :  (req, res) => {
+        testDbConnection().then(() => {
+                console.log('success db ininit')
+                const tickets = ticketsDal.getAllTickets()
+                res.send(tickets)
+            })
+            .catch((err) => {
+                console.log('fail db init:', err);
+                res.sendStatus(400)
+            })
+    },
 
-    getTicketById :  (req, res) => {res.send(req.params.id)},
+    getTicketById :  (req, res) => {
+        testDbConnection().then(() => {
+            console.log('success db ininit')
+            const ticket = ticketsDal.getTicketById(req.params.id)
+            if (!ticket) {
+                res.sendStatus(404).send()
+              } else {
+                res.send(ticket)
+              }
+        })
+        .catch((err) => {
+            console.log('fail db init:', err);
+            res.sendStatus(400)
+        })
+    },
 
-    addTicket : (req, res) => {res.send("addTicket")},
+    addTicket : (req, res) => {
+        testDbConnection().then(() => {
+            console.log('success db ininit')
+            const data = ticketsDal.addTicket(req.body)
+            res.send(data)
+        })
+        .catch((err) => {
+            console.log('fail db init:', err);
+            res.sendStatus(400)
+        })
+    },
 
-    updateTicketById :  (req, res) => {res.send("updateTicketById")},
+    updateTicketById :  (req, res) => {
+        testDbConnection().then(() => {
+            console.log('success db ininit')
+            const data = ticketsDal.updateTicketById(req.params.id, req.body)
+            if (data[0] === 0) {
+              res.status(404).send()
+            } else {
+              res.send(data[1][0])
+            }
+        })
+        .catch((err) => {
+            console.log('fail db init:', err);
+            res.sendStatus(400)
+        })
+    },
 
-    deleteTicketById :  (req, res) => {res.send("deleteTicketById")},
+    deleteTicketById :  (req, res) => {
+        testDbConnection().then(() => {
+            console.log('success db ininit')
+            const data = ticketsDal.deleteTicketById(req.params.id)
+            if (data === 0) {
+              res.status(404).send()
+            } else {
+              res.send();
+            }
+        })
+        .catch((err) => {
+            console.log('fail db init:', err);
+            res.sendStatus(400)
+        })
+    },
 }
 
 module.exports = TicketController
-
-// getAllTickets : async (req, res) => await Ticket.findAll(),
-
-//     getTicketById : async (req, res) => await Ticket.findOne({where: {}}),
-
-//     addTicket : (req, res) => Ticket.create({}),
-
-//     updateTicketById : async (req, res) => await Ticket.update({}, {where:{}}),
-
-//     deleteTicketById : async (req, res) => await Ticket.destroy({where: {}})

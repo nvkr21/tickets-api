@@ -15,6 +15,7 @@
     "paths" : {
         "/tickets" : {
             "get" : {
+                "tags": ["tickets"],
                 "summary" : "Get all the ticket",
                 "description": "Get all the ticket",
                 "produces": ["application/json"],
@@ -38,6 +39,7 @@
                 }
             },
             "post" : {
+                "tags": ["tickets"],
                 "summary" : "Save the ticket",
                 "description": "Save the ticket",
                 "produces": ["application/json"],
@@ -53,7 +55,7 @@
                             "properties": {
                                 "ticket" : {
                                     "type": "object",
-                                    "$ref": "#/definitions/Ticket"
+                                    "$ref": "#/definitions/postTicketRequest"
                                 } 
                             }
                         }
@@ -80,6 +82,7 @@
         },
         "/tickets/{id}" : {
             "put" : {
+                "tags": ["tickets"],
                 "summary" : "Update an existing ticket",
                 "description": "Update an existing ticket",
                 "produces": ["application/json"],
@@ -101,7 +104,7 @@
                             "properties": {
                                 "ticket" : {
                                     "type": "object",
-                                    "$ref": "#/definitions/Ticket"
+                                    "$ref": "#/definitions/postTicketRequest"
                                 } 
                             }
                         }
@@ -126,6 +129,7 @@
                 }
             },
             "delete" : {
+                "tags": ["tickets"],
                 "summary" : "Delete the ticket",
                 "description": "Delete the ticket",
                 "produces": ["application/json"],
@@ -176,18 +180,15 @@
                 },
                 "movie_date": {
                     "type": "string"
+                },
+                "ticket_price": {
+                     "type": "integer"
                 }
             }
         },
-        "Ticket": {
+        "postTicketRequest": {
             "type": "object",
             "properties": {
-                "created_date": {
-                    "type": "string"
-               },
-               "updated_date": {
-                   "type": "string"
-               },
                "customer_name": {
                    "type": "string"
                },
@@ -196,6 +197,9 @@
                },
                "movie_date": {
                    "type": "string"
+               },
+               "ticket_price": {
+                    "type": "integer"
                }
             }
         },
