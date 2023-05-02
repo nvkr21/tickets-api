@@ -17,7 +17,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.get("/", (req, res) => {
-    res.send("Hello")
+    res.send("Welcome to tickets api")
 })
 
 app.get("/login", (req, res) => {
